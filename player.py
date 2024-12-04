@@ -28,7 +28,11 @@ class Player(CircleShape):
 
     def shoot(self):
         shot = Shot(self.position, self.position)
+        shot_direction = pygame.Vector2(0,1).rotate(self.rotation)
+        shot
+
         
+
 
     def update(self, dt):
         keys = pygame.key.get_pressed()
