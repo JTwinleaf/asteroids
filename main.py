@@ -1,6 +1,7 @@
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
+# owo what's this?
 import pygame
 from constants import *
 from player import *
@@ -14,6 +15,7 @@ def main():
     clock = pygame.time.Clock()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     dt = 0
+    score = 0
     asteroids = pygame.sprite.Group()
     updateable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
@@ -37,6 +39,9 @@ def main():
         for asteroid in asteroids:
             if asteroid.collide_check(player) == True:
                 print("Game Over!")
+                print(f"You scored: {score} points!")
+                if score >= 100000:
+                    print("You're crazy good!")
                 return pygame.QUIT
         
         for asteroid in asteroids:
@@ -44,6 +49,10 @@ def main():
                 if shot.collide_check(asteroid) == True:
                     shot.kill()
                     asteroid.split()
+                    if asteroid.radius <= ASTEROID_MIN_RADIUS:
+                        score += 100
+                    else:
+                        score += 10
 
         screen.fill("black")
 
