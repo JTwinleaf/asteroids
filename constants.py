@@ -13,3 +13,5 @@ PLAYER_SHOOT_SPEED = 500
 PLAYER_SHOOT_COOLDOWN = 0.3
 
 SHOT_RADIUS = 5
+
+FESTIVE_COLORS = ("red", "green", "gold", "dark red", "forest green", "purple")
