@@ -14,4 +14,4 @@ PLAYER_SHOOT_COOLDOWN = 0.3
 
 SHOT_RADIUS = 5
 
-FESTIVE_COLORS = ("red", "green", "gold", "dark red", "forest green", "purple")
+FESTIVE_COLORS = {"dark red": "red", "forest green": "green", "brown": "gold"}
