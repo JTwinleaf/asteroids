@@ -1,6 +1,7 @@
 import pygame
 import random
 from circleshape import *
+from particle import *
 from constants import ASTEROID_MIN_RADIUS, FESTIVE_COLORS
 
 class Asteroid(CircleShape):
@@ -9,8 +10,8 @@ class Asteroid(CircleShape):
         self.outline, self.color = random.choice(list(FESTIVE_COLORS.items()))
 
     def draw(self, screen):
-        cap_width = 25
-        cap_height = 20
+        cap_width = 18
+        cap_height = 12
         cap_x = self.position.x - (cap_width/2)
         cap_y = self.position.y - self.radius - cap_height
         pygame.draw.circle(screen, self.color, self.position, self.radius)
@@ -22,6 +23,14 @@ class Asteroid(CircleShape):
         self.position += self.velocity * dt
 
     def split(self):
+        snowflake_angle = 0
+        for _ in range(18):
+            x, y = self.position
+
+            particle = Particle(x, y, color="white")
+            particle.velocity = self.velocity.rotate(snowflake_angle)
+            snowflake_angle += 20
+
         if self.radius <= ASTEROID_MIN_RADIUS:
             self.kill()
         else:
