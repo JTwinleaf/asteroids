@@ -7,21 +7,26 @@ from constants import *
 from player import *
 from shot import *
 from asteroid import *
+from score import *
 from asteroidfield import *
 from circleshape import *
 from particle import *
 
+
 def main():
     pygame.init()
+    pygame.font.init()
     clock = pygame.time.Clock()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     dt = 0
     score = 0
+    ui = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     updateable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     shots = pygame.sprite.Group()
     particles = pygame.sprite.Group()
+    Scoreboard.containers = (ui, drawable)
     AsteroidField.containers = (updateable)
     Player.containers = (updateable, drawable)
     Asteroid.containers = (asteroids, updateable, drawable)
@@ -29,12 +34,15 @@ def main():
     Particle.containers = (particles, updateable, drawable)
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
     asteroidfield = AsteroidField()
-
+    scoreboard = Scoreboard([10,10])
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+        
+        for element in ui:
+            element.update(score)
 
         for entity in updateable:
             entity.update(dt)
