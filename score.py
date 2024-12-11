@@ -10,6 +10,7 @@ class Scoreboard(pygame.sprite.Sprite):
         self.score = 0
         self.pos = pos
         self.update_text()
+        self.game_over = False
     
     def update_text(self):
         self.image = self.font.render(f"Score: {self.score}", True, (255, 255, 255))
@@ -19,3 +20,6 @@ class Scoreboard(pygame.sprite.Sprite):
         if score != self.score:
             self.score = score
             self.update_text()
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)

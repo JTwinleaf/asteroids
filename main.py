@@ -26,7 +26,7 @@ def main():
     drawable = pygame.sprite.Group()
     shots = pygame.sprite.Group()
     particles = pygame.sprite.Group()
-    Scoreboard.containers = (ui, drawable)
+    Scoreboard.containers = (ui)
     AsteroidField.containers = (updateable)
     Player.containers = (updateable, drawable)
     Asteroid.containers = (asteroids, updateable, drawable)
@@ -34,7 +34,7 @@ def main():
     Particle.containers = (particles, updateable, drawable)
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
     asteroidfield = AsteroidField()
-    scoreboard = Scoreboard([10,10])
+    scoreboard = Scoreboard((10,10))
 
     while True:
         for event in pygame.event.get():
@@ -43,6 +43,7 @@ def main():
         
         for element in ui:
             element.update(score)
+            element.draw(screen)
 
         for entity in updateable:
             entity.update(dt)
