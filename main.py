@@ -50,6 +50,7 @@ def main():
 
         for asteroid in asteroids:
             if asteroid.collide_check(player) == True:
+                scoreboard.game_over = True
                 print("Game Over!")
                 print(f"You scored: {score} points!")
                 if score >= 100000:

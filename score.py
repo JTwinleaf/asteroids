@@ -20,6 +20,12 @@ class Scoreboard(pygame.sprite.Sprite):
         if score != self.score:
             self.score = score
             self.update_text()
+        
+        if self.game_over:
+            if self.target_pos is None:
+                screen_rect = pygame.display.get_surface().get_rect()
+                self.target_pos = (screen_rect.centerx - self.rect.width // 2, screen_rect.centery)
+            
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
